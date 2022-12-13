@@ -30,22 +30,18 @@ function add(num1,num2){
     const ans = +num1 + +num2;
     console.log(`The sum is ${ans}`);
 }
-//add(2,8);
 
 function sub(num1,num2){
     const ans = num1 - num2;
     console.log(`The difference is ${ans}`);
 }
-//sub(2,8);
 
 function mul(num1,num2){
     const ans = num1 * num2;
     console.log(`The product is ${ans}`);
 }
-//mul(2,8);
 
 function div(num1,num2){
     const ans = num1 / num2;
     console.log(`The quotient is ${ans}`);
 }
-//div(2,8);
