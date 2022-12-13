@@ -1,4 +1,24 @@
-console.log("Functions");
+console.log("Calculator");
+
+let choice = prompt("What operation do you want to perform");
+//console.log(`You have chossen ${choice}`)
+switch(choice){
+    case "1":
+        console.log("You have chossen Addition.");
+        break;
+    case "2":
+        console.log("You have chossen Substraction.");
+        break;
+    case "3":
+        console.log("You have chossen Multiplication.");
+        break;
+    case "4":
+        console.log("You have chossen Division.");
+        break;
+    default:
+        console.log("Invalid selection");
+        break;
+}
 
 function add(num1,num2){
     let ans=num1+num2;
