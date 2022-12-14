@@ -31,6 +31,10 @@ body{
     line-height: 250%;
     background-color: aquamarine;
 }
+#screen-top p,
+#screen-bottom p {
+    margin: 0px;
+}
 #screen-bottom{
     height: 40px;
     width: 230px;
@@ -66,4 +70,7 @@ button{
 }
 .button-equalto{
     width: 175px;
+}
+button:hover{
+    background-color: yellowgreen;
 }
