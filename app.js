@@ -14,6 +14,7 @@ const btn3 = document.getElementById("b3");
 const btnadd = document.getElementById("badd");
 const btnmin = document.getElementById("bmin");
 const btn0 = document.getElementById("b0");
+const btndot = document.getElementById("bdot");
 const btnequalto = document.getElementById("bequalto");
 
 const input = document.querySelector("#screen-top >p"); // selecting the p tag in the screen-top div.
@@ -46,15 +47,12 @@ function div(num1,num2){ //division function
 }
 
 btn7.addEventListener('click',() => { // assigning function to each buttons.
-    clear();
     input.innerHTML+="7";
 });
 btn8.addEventListener('click',() => {
-    clear();
     input.innerHTML+="8";
 });
 btn9.addEventListener('click',() => {
-    clear();
     input.innerHTML+="9";
 });
 btndel.addEventListener('click',() => {
@@ -64,15 +62,12 @@ btnac.addEventListener('click',() => {
     clear();
 });
 btn4.addEventListener('click',() => {
-    clear();
     input.innerHTML+="4";
 });
 btn5.addEventListener('click',() => {
-    clear();
     input.innerHTML+="5";
 });
 btn6.addEventListener('click',() => {
-    clear();
     input.innerHTML+="6";
 });
 btnmul.addEventListener('click',() => {
@@ -86,15 +81,12 @@ btndiv.addEventListener('click',() => {
     choice = 4;
 });
 btn1.addEventListener('click',() => {
-    clear();
     input.innerHTML+="1";
 });
 btn2.addEventListener('click',() => {
-    clear();
     input.innerHTML+="2";
 });
 btn3.addEventListener('click',() => {
-    clear();
     input.innerHTML+="3";
 });
 btnadd.addEventListener('click',() => {
@@ -108,8 +100,10 @@ btnmin.addEventListener('click',() => {
     choice = 2;
 });
 btn0.addEventListener('click',() => {
-    clear();
     input.innerHTML+="0";
+});
+btndot.addEventListener('click',() => {
+    input.innerHTML+=".";
 });
 btnequalto.addEventListener('click',() => {
     console.log("button equal to is pressed");
@@ -133,14 +127,13 @@ let num2;
 
 function caputre1(){
     let temp = input.textContent;
-    num1 = parseInt(temp);
+    num1 = parseFloat(temp);
     input.innerHTML = "";
-    //console.log(typeof num1);
     return num1;
 }
 function capture2(){
     let temp = input.textContent;
-    num2 = parseInt(temp);
+    num2 = parseFloat(temp);
     input.innerHTML = "";
     return num2;
 }

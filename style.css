@@ -33,6 +33,9 @@ body{
 }
 #screen-top p,
 #screen-bottom p {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: larger;
+    font-weight: bold;
     margin: 0px;
 }
 #screen-bottom{
@@ -63,13 +66,16 @@ body{
 
 }
 button{
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    font-size: large;
     border-radius: 8px;
     height: 40px;
     width: 40px;
     margin-bottom: 8px;
 }
 #bequalto{
-    width: 175px;
+    width: 130px;
 }
 button:hover{
     background-color: yellowgreen;
