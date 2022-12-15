@@ -62,29 +62,31 @@ const btnmin = document.getElementById("bmin");
 const btn0 = document.getElementById("b0");
 const btnequalto = document.getElementById("bequalto");
 
+const input = document.querySelector("#screen-top >p");
+
 btn7.addEventListener('click',() => {
-    console.log("button 7 is pressed");
+    input.innerHTML+="7";
 });
 btn8.addEventListener('click',() => {
-    console.log("button 8 is pressed");
+    input.innerHTML+="8";
 });
 btn9.addEventListener('click',() => {
-    console.log("button 9 is pressed");
+    input.innerHTML+="9";
 });
 btndel.addEventListener('click',() => {
     console.log("button delete is pressed");
 });
 btnac.addEventListener('click',() => {
-    console.log("button ac is pressed");
+    clear();
 });
 btn4.addEventListener('click',() => {
-    console.log("button 4 is pressed");
+    input.innerHTML+="4";
 });
 btn5.addEventListener('click',() => {
-    console.log("button 5 is pressed");
+    input.innerHTML+="5";
 });
 btn6.addEventListener('click',() => {
-    console.log("button 6 is pressed");
+    input.innerHTML+="6";
 });
 btnmul.addEventListener('click',() => {
     console.log("multiplication is pressed");
@@ -93,13 +95,13 @@ btndiv.addEventListener('click',() => {
     console.log("button div is pressed");
 });
 btn1.addEventListener('click',() => {
-    console.log("button 1 is pressed");
+    input.innerHTML+="1";
 });
 btn2.addEventListener('click',() => {
-    console.log("button 2 is pressed");
+    input.innerHTML+="2";
 });
 btn3.addEventListener('click',() => {
-    console.log("button 3 is pressed");
+    input.innerHTML+="3";
 });
 btnadd.addEventListener('click',() => {
     console.log("button add is pressed");
@@ -108,8 +110,12 @@ btnmin.addEventListener('click',() => {
     console.log("button minus is pressed");
 });
 btn0.addEventListener('click',() => {
-    console.log("button 0 is pressed");
+    input.innerHTML+="0";
 });
 btnequalto.addEventListener('click',() => {
     console.log("button equal to is pressed");
 });
+
+function clear(){
+    input.innerHTML=" ";
+}
