@@ -1,55 +1,3 @@
-// let choice = prompt("What operation do you want to perform");
-// //console.log(`You have chossen ${choice}`)
-// let num1 = prompt("Enter the first number");
-// let num2 = prompt("Enter the second number");
-// switch(choice){ //user selection is accepted and appropriate action is taken here
-//     case "1":
-//         console.log("You have chossen Addition.");
-//         add(num1,num2);
-//         break;
-//     case "2":
-//         console.log("You have chossen Substraction.");
-//         sub(num1,num2);
-//         break;
-//     case "3":
-//         console.log("You have chossen Multiplication.");
-//         mul(num1,num2);
-//         break;
-//     case "4":
-//         console.log("You have chossen Division.");
-//         div(num1,num2);
-//         break;
-//     default:
-//         console.log("Invalid selection");
-//         break;
-// }
-
-function numberCatch(){
-    const num1 = input.textContent;
-    console.log(num1);
-    input.innerHTML = " ";
-}
-
-function add(num1,num2){ //add function
-    const ans = +num1 + +num2;
-    output.innerHTML = ans;
-}
-
-function sub(num1,num2){ //minus function 
-    const ans = num1 - num2;
-    console.log(`The difference is ${ans}`);
-}
-
-function mul(num1,num2){ // multiplication function
-    const ans = num1 * num2;
-    console.log(`The product is ${ans}`);
-}
-
-function div(num1,num2){ //division function
-    const ans = num1 / num2;
-    console.log(`The quotient is ${ans}`);
-}
-
 const btn7 = document.getElementById("b7"); //asigning short cuts to each button in a calculator
 const btn8 = document.getElementById("b8");
 const btn9 = document.getElementById("b9");
@@ -71,13 +19,42 @@ const btnequalto = document.getElementById("bequalto");
 const input = document.querySelector("#screen-top >p"); // selecting the p tag in the screen-top div.
 const output = document.querySelector("#screen-bottom >p"); // selecting the p tag in the screen-bottom div.
 
+let choice;
+
+function add(num1,num2){ //add function
+    const ans = +num1 + +num2;
+    input.innerHTML = `${num1} + ${num2}`;
+    output.innerHTML = ans;
+}
+
+function sub(num1,num2){ //minus function 
+    const ans = num1 - num2;
+    input.innerHTML = `${num1} - ${num2}`;
+    output.innerHTML = ans;
+}
+
+function mul(num1,num2){ // multiplication function
+    const ans = num1 * num2;
+    input.innerHTML = `${num1} * ${num2}`;
+    output.innerHTML = ans;
+}
+
+function div(num1,num2){ //division function
+    const ans = num1 / num2;
+    input.innerHTML = `${num1} / ${num2}`;
+    output.innerHTML = ans;
+}
+
 btn7.addEventListener('click',() => { // assigning function to each buttons.
+    clear();
     input.innerHTML+="7";
 });
 btn8.addEventListener('click',() => {
+    clear();
     input.innerHTML+="8";
 });
 btn9.addEventListener('click',() => {
+    clear();
     input.innerHTML+="9";
 });
 btndel.addEventListener('click',() => {
@@ -87,43 +64,89 @@ btnac.addEventListener('click',() => {
     clear();
 });
 btn4.addEventListener('click',() => {
+    clear();
     input.innerHTML+="4";
 });
 btn5.addEventListener('click',() => {
+    clear();
     input.innerHTML+="5";
 });
 btn6.addEventListener('click',() => {
+    clear();
     input.innerHTML+="6";
 });
 btnmul.addEventListener('click',() => {
     console.log("multiplication is pressed");
-    numberCatch();
+    caputre1();
+    choice = 3;
 });
 btndiv.addEventListener('click',() => {
     console.log("button div is pressed");
+    caputre1();
+    choice = 4;
 });
 btn1.addEventListener('click',() => {
+    clear();
     input.innerHTML+="1";
 });
 btn2.addEventListener('click',() => {
+    clear();
     input.innerHTML+="2";
 });
 btn3.addEventListener('click',() => {
+    clear();
     input.innerHTML+="3";
 });
 btnadd.addEventListener('click',() => {
-    add(1,2);
+    console.log("add");
+    caputre1();
+    choice = 1;
 });
 btnmin.addEventListener('click',() => {
     console.log("button minus is pressed");
+    caputre1();
+    choice = 2;
 });
 btn0.addEventListener('click',() => {
+    clear();
     input.innerHTML+="0";
 });
 btnequalto.addEventListener('click',() => {
     console.log("button equal to is pressed");
+    console.log(`the choice:${choice}`);
+    capture2();
+    console.log(`num1: ${num1}`);
+    console.log(`num2: ${num2}`);
+    if(choice=="1"){
+        add(num1,num2);
+    }else if(choice=="2"){
+        sub(num1,num2);
+    }else if(choice=="3"){
+        mul(num1,num2);
+    }else{
+        div(num1,num2);
+    }
 });
 
+let num1;
+let num2;
+
+function caputre1(){
+    let temp = input.textContent;
+    num1 = parseInt(temp);
+    input.innerHTML = "";
+    //console.log(typeof num1);
+    return num1;
+}
+function capture2(){
+    let temp = input.textContent;
+    num2 = parseInt(temp);
+    input.innerHTML = "";
+    return num2;
+}
+
+
 function clear(){
-    input.innerHTML=" ";
+    input.innerHTML = "";
+    output.innerHTML = "";
 }
