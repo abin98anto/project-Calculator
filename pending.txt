@@ -1,0 +1,2 @@
+1. Starting with a negative value breaks the code.
+2. keyboard intergeration.
