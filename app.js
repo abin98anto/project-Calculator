@@ -20,126 +20,200 @@ const btnequalto = document.getElementById("bequalto");
 const input = document.querySelector("#screen-top >p"); // selecting the p tag in the screen-top div.
 const output = document.querySelector("#screen-bottom >p"); // selecting the p tag in the screen-bottom div.
 
-let choice;
 
-function add(num1,num2){ //add function
-    const ans = +num1 + +num2;
-    input.innerHTML = `${num1} + ${num2}`;
-    output.innerHTML = ans;
-}
-
-function sub(num1,num2){ //minus function 
-    const ans = num1 - num2;
-    input.innerHTML = `${num1} - ${num2}`;
-    output.innerHTML = ans;
-}
-
-function mul(num1,num2){ // multiplication function
-    const ans = num1 * num2;
-    input.innerHTML = `${num1} * ${num2}`;
-    output.innerHTML = ans;
-}
-
-function div(num1,num2){ //division function
-    const ans = num1 / num2;
-    input.innerHTML = `${num1} / ${num2}`;
-    output.innerHTML = ans;
-}
-
-btn7.addEventListener('click',() => { // assigning function to each buttons.
-    input.innerHTML+="7";
+btn0.addEventListener('click',() => {   // When the buttons (0-9 and ".") are pressed the screen displays those numbers. 
+    input.innerHTML+="0";
+    numbuttonPress();
 });
-btn8.addEventListener('click',() => {
-    input.innerHTML+="8";
-});
-btn9.addEventListener('click',() => {
-    input.innerHTML+="9";
-});
-btndel.addEventListener('click',() => {
-    console.log("button delete is pressed");
-});
-btnac.addEventListener('click',() => {
-    clear();
-});
-btn4.addEventListener('click',() => {
-    input.innerHTML+="4";
-});
-btn5.addEventListener('click',() => {
-    input.innerHTML+="5";
-});
-btn6.addEventListener('click',() => {
-    input.innerHTML+="6";
-});
-btnmul.addEventListener('click',() => {
-    console.log("multiplication is pressed");
-    caputre1();
-    choice = 3;
-});
-btndiv.addEventListener('click',() => {
-    console.log("button div is pressed");
-    caputre1();
-    choice = 4;
-});
-btn1.addEventListener('click',() => {
+btn1.addEventListener('click',() => {   
     input.innerHTML+="1";
+    numbuttonPress();
 });
 btn2.addEventListener('click',() => {
     input.innerHTML+="2";
+    numbuttonPress();
 });
 btn3.addEventListener('click',() => {
     input.innerHTML+="3";
+    numbuttonPress();
 });
-btnadd.addEventListener('click',() => {
-    console.log("add");
-    caputre1();
-    choice = 1;
+btn4.addEventListener('click',() => {
+    input.innerHTML+="4";
+    numbuttonPress();
 });
-btnmin.addEventListener('click',() => {
-    console.log("button minus is pressed");
-    caputre1();
-    choice = 2;
+btn5.addEventListener('click',() => {
+    input.innerHTML+="5";
+    numbuttonPress();
 });
-btn0.addEventListener('click',() => {
-    input.innerHTML+="0";
+btn6.addEventListener('click',() => {
+    input.innerHTML+="6";
+    numbuttonPress();
+});
+btn7.addEventListener('click',() => { 
+    input.innerHTML+="7";
+    numbuttonPress();
+});
+btn8.addEventListener('click',() => {
+    input.innerHTML+="8";
+    numbuttonPress();
+});
+btn9.addEventListener('click',() => {
+    input.innerHTML+="9";
+    numbuttonPress();
 });
 btndot.addEventListener('click',() => {
     input.innerHTML+=".";
+    numbuttonPress();
 });
-btnequalto.addEventListener('click',() => {
-    console.log("button equal to is pressed");
-    console.log(`the choice:${choice}`);
-    capture2();
-    console.log(`num1: ${num1}`);
-    console.log(`num2: ${num2}`);
-    if(choice=="1"){
-        add(num1,num2);
-    }else if(choice=="2"){
-        sub(num1,num2);
-    }else if(choice=="3"){
-        mul(num1,num2);
-    }else{
-        div(num1,num2);
+
+btnadd.addEventListener('click',() => {    // Assigns function for capturing the first number and the operator selected.
+    if(input.innerHTML==""){
+        console.log("nothing on screen");
+    }else {
+        input.innerHTML+="+";
+        choice = 1;
+        operandPress(choice);
+    }
+});
+btnmin.addEventListener('click',() => {
+    input.innerHTML+="-";
+    choice = 2;
+    operandPress(choice);
+});
+btnmul.addEventListener('click',() => {
+    if(input.innerHTML==""){
+        console.log("nothing on screen");
+    }else {
+        input.innerHTML+="*";
+        choice = 3;
+        operandPress(choice);
+    }
+});
+btndiv.addEventListener('click',() => {
+    if(input.innerHTML==""){
+        console.log("nothing on screen");
+    }else {
+        input.innerHTML+="/";
+        choice = 4;
+        operandPress(choice);
     }
 });
 
-let num1;
-let num2;
+btnequalto.addEventListener('click',() => {    // Solves the problem and displays the result when "=" is pressed.
+    console.log("the button = is pressed.");
+    //buttonPress();
+    equaltopressed();
+    //operation(choice);
+});
 
-function caputre1(){
-    let temp = input.textContent;
-    num1 = parseFloat(temp);
-    input.innerHTML = "";
-    return num1;
+btndel.addEventListener('click',() => {  //   delete/backspace button.
+    console.log("button delete is pressed");
+});
+
+btnac.addEventListener('click',() => {  //  all clear button. 
+    location.reload();     //   Reloads the whole page hence clears everything on calculator screen.
+});
+
+let choice = 0;
+let num1 = 0;
+let num2 = 0;
+let result = "no";
+let equaltoTimer = 0;
+
+function numbuttonPress(){  //  when number button is pressed.
+    const numArray = input.innerHTML.match(/\d+/g);
+    const operandArray = input.innerHTML.match(/[+\-*/]/g);
+    // console.log(operandArray);
+    // if(operandArray==null){
+    //     console.log("no operand");
+    // }else if(operandArray.length>1){
+    //     console.log("second operator");
+    // }
 }
-function capture2(){
-    let temp = input.textContent;
-    num2 = parseFloat(temp);
-    input.innerHTML = "";
-    return num2;
+
+function operandPress(choice){  //  when operator button is pressed.
+    const numArray = input.innerHTML.match(/\d+/g);
+    const operandArray = input.innerHTML.match(/[+\-*/]/g);
+    if(numArray == null){
+        console.log("only operands on screen");  //  do nothing.
+    }else if(numArray!=null && operandArray.length==2){
+        console.log("numbers and operator on screen");   //  find the result of whats on the screen and write the result and the operator on screen.
+        if(operandArray[0] == "+"){
+            num1 = +numArray[0] + +numArray[1];
+        }else if(operandArray[0] == "-"){
+            num1 = numArray[0] - numArray[1];
+        }else if(operandArray[0] == "*"){
+            num1 = numArray[0] * numArray[1];
+        }else if(operandArray[0] == "/"){
+            num1 = numArray[0] / numArray[1];
+        }
+        return input.innerHTML=`${num1}${operandArray[1]}`;
+    }else if(numArray.length==1){
+        console.log("only numbers on screen"); //  do not add operand to screen.
+    }
+    return choice;
 }
 
-
-function clear(){
-    input.innerHTML = "";
-    output.innerHTML = "";
+function equaltopressed(){    //  when equal to button is pressed. 
+    const numArray = input.innerHTML.match(/\d+/g);
+    const operandArray = input.innerHTML.match(/[+\-*/]/g);
+    if(numArray == null && operandArray == null){   //  when there is nothing on screen.
+        console.log("no numbers and operands"); //  do nothing.
+    }else if(numArray.length==0 && operandArray!=0 || numArray.length<operandArray.length ){    // when there is only number of operators greater than number of numbers.
+        if(operandArray.length == 2){   // when there are exactly 2 operators.
+            if(operandArray[1] == "-"){ //  when the second operator is "-".
+                console.log("the num2 is a negative value");
+                num1 = numArray[0];
+                num2 = -numArray[1];
+                let result =0;
+                if(operandArray[0] == "+"){
+                    result = +num1 + +num2;
+                }else if(operandArray[0] == "-"){
+                    result = num1 - num2;
+                }else if(operandArray[0] == "*"){
+                    result = num1 * num2;
+                }else if(operandArray[0] == "/"){
+                    result = num1 / num2;
+                }
+                input.innerHTML=result;
+            }else { //  when the second operator is not "-".
+                console.log("math error");
+            }
+        }else if(operandArray.length == 2 && numArray == null){ //  when there is only one operator and no numbers.ie the num1 is negative.
+            console.log("num1 is a  negative value");
+            if(operandArray[0] == "-"){ //  
+                console.log("do the operation with num1 as negative value");
+                num1 = -numArray[0];
+                num2 = numArray[1];
+                let result =0;
+                if(operandArray[0] == "+"){
+                    result = +num1 + +num2;
+                }else if(operandArray[0] == "-"){
+                    result = num1 - num2;
+                }else if(operandArray[0] == "*"){
+                    result = num1 * num2;
+                }else if(operandArray[0] == "/"){
+                    result = num1 / num2;
+                }
+                input.innerHTML=result;
+            }else {
+                console.log("math error");
+            }
+        }
+    }else if(numArray.length>operandArray.length){  //  normal case when there are 2 numbers and an operator.
+        console.log("do the operations");
+        num1 = numArray[0];
+        num2 = numArray[1];
+        let result =0;
+        if(operandArray[0] == "+"){
+            result = +num1 + +num2;
+        }else if(operandArray[0] == "-"){
+            result = num1 - num2;
+        }else if(operandArray[0] == "*"){
+            result = num1 * num2;
+        }else if(operandArray[0] == "/"){
+            result = num1 / num2;
+        }
+        input.innerHTML=result;
+    }
 }
