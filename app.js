@@ -20,7 +20,6 @@ const btnequalto = document.getElementById("bequalto");
 const input = document.querySelector("#screen-top >p"); // selecting the p tag in the screen-top div.
 const output = document.querySelector("#screen-bottom >p"); // selecting the p tag in the screen-bottom div.
 
-
 btn0.addEventListener('click',() => {   // When the buttons (0-9 and ".") are pressed the screen displays those numbers. 
     input.innerHTML+="0";
     numbuttonPress();
@@ -210,7 +209,7 @@ function calculate(num1,num2,choice){
     }else if(choice == "/"){
         result = num1 / num2;
     }
-    input.innerHTML=result;
+    input.innerHTML=result.toFixed(3);
 }
 
 function backspace(){
