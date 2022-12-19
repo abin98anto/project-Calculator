@@ -108,6 +108,7 @@ btnequalto.addEventListener('click',() => {    // Solves the problem and display
 
 btndel.addEventListener('click',() => {  //   delete/backspace button.
     console.log("button delete is pressed");
+    backspace();
 });
 
 btnac.addEventListener('click',() => {  //  all clear button. 
@@ -117,26 +118,35 @@ btnac.addEventListener('click',() => {  //  all clear button.
 let choice = 0;
 let num1 = 0;
 let num2 = 0;
-let result = "no";
-let equaltoTimer = 0;
 
 function numbuttonPress(){  //  when number button is pressed.
     const numArray = input.innerHTML.match(/\d+/g);
     const operandArray = input.innerHTML.match(/[+\-*/]/g);
-    // console.log(operandArray);
-    // if(operandArray==null){
-    //     console.log("no operand");
-    // }else if(operandArray.length>1){
-    //     console.log("second operator");
-    // }
+    const array = [input.innerHTML];
+    //const splitArray = array.split(`${operandArray[0]}`);
+    //console.log(array);
+    if(operandArray==null){ //  normal case.
+        console.log("no operands");
+    }else if(operandArray.length==1 && numArray.length==1){ //  when num1 is negative.
+        // if(splitArray[0] == operandArray[0] == "-"){
+            console.log("num1 is negative");
+            // num1 = -numArray[0];
+        }else {
+            console.log("logical error");
+        }
 }
 
 function operandPress(choice){  //  when operator button is pressed.
     const numArray = input.innerHTML.match(/\d+/g);
     const operandArray = input.innerHTML.match(/[+\-*/]/g);
-    if(numArray == null){
+    if(numArray == null && operandArray.length!=0){
         console.log("only operands on screen");  //  do nothing.
-    }else if(numArray!=null && operandArray.length==2){
+        if(operandArray.length == 1){
+            console.log("do nothing");
+        }else {
+            console.log("logical error");
+        }
+    }else if(numArray.length<=2 && operandArray.length==2){ //  when second operator is pressed.
         console.log("numbers and operator on screen");   //  find the result of whats on the screen and write the result and the operator on screen.
         if(operandArray[0] == "+"){
             num1 = +numArray[0] + +numArray[1];
@@ -159,25 +169,16 @@ function equaltopressed(){    //  when equal to button is pressed.
     const operandArray = input.innerHTML.match(/[+\-*/]/g);
     if(numArray == null && operandArray == null){   //  when there is nothing on screen.
         console.log("no numbers and operands"); //  do nothing.
-    }else if(numArray.length==0 && operandArray!=0 || numArray.length<operandArray.length ){    // when there is only number of operators greater than number of numbers.
-        if(operandArray.length == 2){   // when there are exactly 2 operators.
+    }else if(numArray.length<operandArray.length ){    // when there is only number of operators greater than number of numbers.
+        if(operandArray.length == 2 && numArray.length == 2){   // when there are exactly 2 operators.
             if(operandArray[1] == "-"){ //  when the second operator is "-".
                 console.log("the num2 is a negative value");
                 num1 = numArray[0];
                 num2 = -numArray[1];
-                let result =0;
-                if(operandArray[0] == "+"){
-                    result = +num1 + +num2;
-                }else if(operandArray[0] == "-"){
-                    result = num1 - num2;
-                }else if(operandArray[0] == "*"){
-                    result = num1 * num2;
-                }else if(operandArray[0] == "/"){
-                    result = num1 / num2;
-                }
-                input.innerHTML=result;
-            }else { //  when the second operator is not "-".
+                calculate(num1,num2,numArray[0]);
+            }else if(operandArray.length==2 && numArray.length==1){ //  when the second operator is not "-".
                 console.log("math error");
+                num1 = -numArray[0];
             }
         }else if(operandArray.length == 2 && numArray == null){ //  when there is only one operator and no numbers.ie the num1 is negative.
             console.log("num1 is a  negative value");
@@ -185,17 +186,7 @@ function equaltopressed(){    //  when equal to button is pressed.
                 console.log("do the operation with num1 as negative value");
                 num1 = -numArray[0];
                 num2 = numArray[1];
-                let result =0;
-                if(operandArray[0] == "+"){
-                    result = +num1 + +num2;
-                }else if(operandArray[0] == "-"){
-                    result = num1 - num2;
-                }else if(operandArray[0] == "*"){
-                    result = num1 * num2;
-                }else if(operandArray[0] == "/"){
-                    result = num1 / num2;
-                }
-                input.innerHTML=result;
+                calculate(num1,num2,operandArray[0]);
             }else {
                 console.log("math error");
             }
@@ -204,16 +195,31 @@ function equaltopressed(){    //  when equal to button is pressed.
         console.log("do the operations");
         num1 = numArray[0];
         num2 = numArray[1];
-        let result =0;
-        if(operandArray[0] == "+"){
-            result = +num1 + +num2;
-        }else if(operandArray[0] == "-"){
-            result = num1 - num2;
-        }else if(operandArray[0] == "*"){
-            result = num1 * num2;
-        }else if(operandArray[0] == "/"){
-            result = num1 / num2;
-        }
-        input.innerHTML=result;
+        calculate(num1,num2,operandArray[0]);
     }
+}
+
+function calculate(num1,num2,choice){
+    let result = 0;
+    if(choice == "+"){
+        result = +num1 + +num2;
+    }else if(choice == "-"){
+        result = num1 -num2;
+    }else if(choice == "*"){
+        result = num1 * num2;
+    }else if(choice == "/"){
+        result = num1 / num2;
+    }
+    input.innerHTML=result;
+}
+
+function backspace(){
+    const numArray = input.innerHTML.match(/\d+/g);
+    const operandArray = input.innerHTML.match(/[+\-*/]/g);
+    const array = [...input.innerHTML];
+    const lastElement = array.pop();
+    //const splitArray = array.;
+    console.log(array);
+    console.log(array.join(""));
+    input.innerHTML=`${array.join("")}`;
 }
